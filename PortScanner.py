@@ -2,6 +2,7 @@
 
 import socket
 import sys
+import os
 
 HOSTS = ["localhost"]#, "team2", "team3", "team4"]
 PORTLOW = 1
@@ -27,11 +28,15 @@ def ScanPort(host, port):
 
 def main():
 	print ("Starting port scanning.")
+	f = open("ps.txt", "w")
 	for host in HOSTS:
 		print ("Scanning host: " + host)
 		for port in range(PORTLOW, PORTHIGH):
 			status = "Open" if (ScanPort(host, port) == True) else "Closed"
+			f.write("Host:" + host + " -Scanning port: " + str(port) + ": " + status + "\n")
 			print ("Scanning port: " + str(port) + ": " + status)
+	f.close()
+	os.chmod("ps.txt", 0o700)
 			
 
 if __name__ == "__main__":
