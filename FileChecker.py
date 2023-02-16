@@ -16,6 +16,7 @@ def analyzeFile(filepath):
 			if c in line:
 				print("Line {}: Contains {} in Line {}\n".format(line.replace('\t', ''),c, linenum))
 		linenum +=1
+	prog.close()
 				
 				
 				
